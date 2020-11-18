@@ -1,38 +1,26 @@
 import { createBrowserHistory } from 'history'
 import React from 'react'
 import { Route, Router, Switch } from 'react-router-dom'
-import logo from './logo.svg';
-import './App.css';
+import urls from './common/urls'
+import Create from './views/Create'
+import Edit from './views/Edit'
+import List from './views/List'
+import Page404 from './views/Page404'
+import './App.css'
 
 const history = createBrowserHistory()
 
-function App() {
+const App = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route
-          render={() => (
-            <div className="App">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                  Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn React
-                </a>
-              </header>
-            </div>
-          )}
-        />
+        <Route exact path={urls.list} component={List} />
+        <Route path={urls.edit} component={Edit} />
+        <Route path={urls.create} component={Create} />
+        <Route component={Page404} />
       </Switch>
     </Router>
   )
 }
 
-export default App;
+export default App
