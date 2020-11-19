@@ -29,7 +29,7 @@ const List = props => {
               <BookItem
                 key={book.bookId}
                 {...book}
-                cartButtonText={selectedBooks.includes(book.bookId) ? 'Deselect book' : 'Select book'}
+                isBookSelected={selectedBooks.includes(book.bookId)}
                 onClick={() => {
                   const bookIndex = selectedBooks.findIndex(id => id === book.bookId)
                   if (bookIndex > -1) {
