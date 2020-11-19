@@ -19,7 +19,7 @@ const List = () => {
             {...book}
             cartButtonText={cart.includes(book.bookId) ? 'Remove from cart' : 'Add to cart'}
             onClick={() => {
-              const bookIndex = cart.findIndex(() => cart.includes(book.bookId))
+              const bookIndex = cart.findIndex(id => id === book.bookId)
               if (bookIndex > -1) {
                 const duplicateCart = [ ...cart ]
                 duplicateCart.splice(bookIndex, 1)
