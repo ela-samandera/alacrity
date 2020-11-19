@@ -10,7 +10,6 @@ const Edit = props => {
   const loading = editLoading || queryLoading
   return (
     <div>
-      Edit view: {bookId}
       <div>{loading && 'loading...'}</div>
       {data && data.book && <BookForm
         bookValues={data.book}

@@ -7,7 +7,6 @@ const Create = () => {
   const [createBook, { loading }] = useMutation(createBookMutation)
   return (
     <div>
-      Create view
       <div>{loading && 'loading...'}</div>
       <BookForm
         onSubmit={ values => { createBook({ variables: { ...values } }) }}
