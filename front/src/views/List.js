@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core'
+import { Box, Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core'
 import React, { useState } from 'react'
 import { fixFloatAfterDigit } from '../common/util'
 import BookItem from '../components/BookItem'
@@ -8,10 +8,11 @@ import { booksQuery } from '../queries/books'
 const List = props => {
   const { data, loading } = useQuery(booksQuery)
   const [ totalPrice, setTotalPrice ] = useState(0)
-  const [ cart, setCartContent ] = useState([])
+  const [ selectedBooks, selectBooks ] = useState([])
   return (
     <div>
       <div>{ loading && 'loading...' }</div>
+      <Box textAlign="right">Total books: {selectedBooks.length} | Total price: {totalPrice}</Box>
       <TableContainer component={Paper}>
         <Table aria-label='simple table'>
           <TableHead>
@@ -28,16 +29,16 @@ const List = props => {
               <BookItem
                 key={book.bookId}
                 {...book}
-                cartButtonText={cart.includes(book.bookId) ? 'Remove from cart' : 'Add to cart'}
+                cartButtonText={selectedBooks.includes(book.bookId) ? 'Deselect book' : 'Select book'}
                 onClick={() => {
-                  const bookIndex = cart.findIndex(id => id === book.bookId)
+                  const bookIndex = selectedBooks.findIndex(id => id === book.bookId)
                   if (bookIndex > -1) {
-                    const duplicateCart = [ ...cart ]
+                    const duplicateCart = [ ...selectedBooks ]
                     duplicateCart.splice(bookIndex, 1)
-                    setCartContent(duplicateCart)
+                    selectBooks(duplicateCart)
                     setTotalPrice(fixFloatAfterDigit(totalPrice - book.price))
                   } else {
-                    setCartContent([ ...cart, book.bookId ])
+                    selectBooks([ ...selectedBooks, book.bookId ])
                     setTotalPrice(fixFloatAfterDigit(totalPrice + book.price))
                   }
                 }}
@@ -46,7 +47,6 @@ const List = props => {
           </ TableBody>
         </Table>
       </TableContainer>
-      <p>Total cart: {cart.length} | Total price: {totalPrice}</p>
     </div>
   )
 }
