@@ -1,18 +1,19 @@
 import { useQuery } from '@apollo/react-hooks'
 import React from 'react'
+import BookItem from '../common/BookItem'
 import { booksQuery } from '../queries/books'
 
 const List = () => {
-  const { data, loading, ...rest } = useQuery(booksQuery)
-  console.log(data)
-  console.log(rest)
+  const { data, loading } = useQuery(booksQuery)
   return (
     <div>
       List view
       <div>{ loading && 'loading...' }</div>
-      { data && data.books && data.books.map(book => (
-        <p key={book.bookId}>author: {book.author}, bookId: {book.bookId}, price: {book.price}, title: {book.title}</p>
-      )) }
+      <ul>
+        { data && data.books && data.books.map(book => (
+          <BookItem key={book.bookId} {...book} />
+        )) }
+      </ul>
     </div>
   )
 }
