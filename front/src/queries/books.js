@@ -10,3 +10,14 @@ export const booksQuery = gql`
     }
   }
 `
+
+export const bookQuery = gql`
+  query Book($bookId: Int!) {
+    book (bookId: $bookId) {
+      author
+      bookId
+      title
+      price
+    }
+  }
+`

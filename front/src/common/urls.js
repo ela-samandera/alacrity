@@ -1,6 +1,7 @@
 const urls = {
+  book: '/book',
   create: '/create',
-  edit: '/edit',
+  edit: '/book/:bookId',
   list: '/'
 }
 
