@@ -5,13 +5,12 @@ import { fixFloatAfterDigit } from '../common/util'
 import BookItem from '../components/BookItem'
 import { booksQuery } from '../queries/books'
 
-const BookList = () => {
+const List = props => {
   const { data, loading } = useQuery(booksQuery)
   const [ totalPrice, setTotalPrice ] = useState(0)
   const [ cart, setCartContent ] = useState([])
   return (
     <div>
-      List view
       <div>{ loading && 'loading...' }</div>
       <TableContainer component={Paper}>
         <Table aria-label='simple table'>
@@ -52,4 +51,4 @@ const BookList = () => {
   )
 }
 
-export default BookList
+export default List

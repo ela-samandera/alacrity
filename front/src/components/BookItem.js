@@ -12,7 +12,7 @@ const BookItem = props => {
       <TableCell>${props.price}</TableCell>
       <TableCell align='right'>
         <button onClick={props.onClick}>{props.cartButtonText}</button>
-        <Link to={`${urls.book}/${props.bookId}`}>Edit book</Link>
+        <Link to={`${urls.book}/${props.bookId}/${props.title}`}>Edit book</Link>
       </TableCell>
     </TableRow>
   )
