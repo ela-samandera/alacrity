@@ -1,4 +1,5 @@
 import { ApolloProvider } from '@apollo/react-hooks'
+import 'fontsource-roboto'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import apolloClient from './apolloClient'

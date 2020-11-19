@@ -1,18 +1,21 @@
+import { AppBar, Container, Tab, Typography } from '@material-ui/core'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import urls from '../common/urls'
 
 const PageWrapper = props => {
   return (
-    <div>
-      <nav>
-        <NavLink to={urls.list}>Book List</NavLink>
-        <NavLink to={urls.create}>Create New Book</NavLink>
-      </nav>
-      <div>
+    <>
+      <AppBar position='static'>
+        <Typography>
+          <Tab component={NavLink} to={urls.list} label='Book List' />
+          <Tab component={NavLink} to={urls.create} label='Create New Book' />
+        </Typography>
+      </ AppBar>
+      <Typography component={Container}>
         {props.children}
-      </div>
-    </div>
+      </Typography>
+    </>
   )
 }
 
