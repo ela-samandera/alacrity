@@ -5,7 +5,7 @@
 ### Clone the repo:
 
 ```
-git clone https://github.com/samandera/alacrity.git
+git clone https://github.com/ela-samandera/alacrity.git
 ```
 
 ## (Optional) Strat Backend
