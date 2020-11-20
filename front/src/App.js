@@ -7,7 +7,6 @@ import Create from './views/Create'
 import Edit from './views/Edit'
 import List from './views/List'
 import Page404 from './views/Page404'
-import './App.css'
 
 const history = createBrowserHistory()
 

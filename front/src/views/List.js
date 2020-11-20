@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
+import { Alert } from '@material-ui/lab'
 import { Box, Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core'
 import React, { useState } from 'react'
 import { fixFloatAfterDigit } from '../common/util'
@@ -6,12 +7,14 @@ import BookItem from '../components/BookItem'
 import { booksQuery } from '../queries/books'
 
 const List = props => {
-  const { data, loading } = useQuery(booksQuery)
+  const { data, loading } = useQuery(booksQuery, {
+    fetchPolicy: 'no-cache'
+  })
   const [ totalPrice, setTotalPrice ] = useState(0)
   const [ selectedBooks, selectBooks ] = useState([])
   return (
     <div>
-      <div>{ loading && 'loading...' }</div>
+      {loading && <Alert variant='outlined' severity='info'>loading...</Alert>}
       <Box textAlign="right">Total books: {selectedBooks.length} | Total price: {totalPrice}</Box>
       <TableContainer component={Paper}>
         <Table aria-label='simple table'>
