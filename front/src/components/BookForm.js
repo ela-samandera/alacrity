@@ -1,4 +1,5 @@
 import { Box, Button, TextField } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import React from 'react'
 import { useField, withFormik } from 'formik'
 import { Link } from 'react-router-dom'
@@ -15,19 +16,23 @@ const Input = ({ fieldName, type = 'text' }) => {
 
 const BookForm = props => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      <Input fieldName='title'  />
-      <Input fieldName='author'  />
-      <Input type='number' fieldName='price' />
-      <Box display='flex' justifyContent="center">
-        <Box mx={3}>
-          <Button type='submit' variant='contained' color='primary'>Submit</Button>
+    <>
+      {props.error && <Alert variant='outlined' severity='error'>{props.error.message}</Alert>}
+      {props.success && <Alert variant='outlined' severity='success'>{props.success}</Alert>}
+      <form onSubmit={props.handleSubmit}>
+        <Input fieldName='title'  />
+        <Input fieldName='author'  />
+        <Input type='number' fieldName='price' />
+        <Box display='flex' justifyContent="center">
+          <Box mx={3}>
+            <Button type='submit' variant='contained' color='primary'>Submit</Button>
+          </Box>
+          <Box mx={3}>
+            <Button component={Link} to={urls.list} variant='contained'>Cancel</Button>
+          </Box>
         </Box>
-        <Box mx={3}>
-          <Button component={Link} to={urls.list} variant='contained'>Cancel</Button>
-        </Box>
-      </Box>
-    </form>
+      </form>
+    </>
   )
 }
 
